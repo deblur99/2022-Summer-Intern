@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="flex-container">
+      <h1 id="title">Image Uploader</h1>
+      <img id="picture" />
+      <div id="btns">
+        <!-- send GET request to server via API -->
+        <button id="importBtn" onclick="onClickImportBtn()">
+          Import Image
+        </button>
+        <form action="" method="get"></form>
+
+        <!-- send POST request with exported img to server via API -->
+        <button id="exportBtn" onclick="onClickExportBtn()">
+          Export Image
+        </button>
+        <input type="file" name="" id="browse" accept="image/*" required />
+        <form action="" method="post"></form>
+      </div>
+      <article>
+        <span></span>
+        <ul>
+          <li>
+            Import Image: fetch an image stored in the DynamoDB and show it on
+            the page.
+          </li>
+          <li>
+            Export Image: upload an image from your storage into the DynamoDB.
+            <h1>You can upload your image <strong>up to 400KiB.</strong></h1>
+          </li>
+        </ul>
+      </article>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
