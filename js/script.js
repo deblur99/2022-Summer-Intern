@@ -42,7 +42,6 @@ function sendGetImgRequest() {
       if (httpRequest.status === 200) {
         const rawData = JSON.parse(httpRequest.responseText).body;
         imgSrc = JSON.parse(rawData).Items[0].imgsrc;
-        console.log(imgSrc); // debug
         console.log(`Request ${httpRequest.status} OK`);
       } else {
         console.log(`${httpRequest.status} Response error`);
