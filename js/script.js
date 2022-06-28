@@ -26,6 +26,26 @@ function scaleImgViewOnWindowSize() {
   });
 }
 
+function enableImportBtn() {
+  const btn = document.getElementById("importBtn");
+  btn.disabled = false;
+}
+
+function disableImportBtn() {
+  const btn = document.getElementById("importBtn");
+  btn.disabled = true;
+}
+
+function enableExportBtn() {
+  const btn = document.getElementById("exportBtn");
+  btn.disabled = false;
+}
+
+function disableExportBtn() {
+  const btn = document.getElementById("exportBtn");
+  btn.disabled = true;
+}
+
 function onClickImportBtn() {
   sendGetImgRequest();
 }
@@ -60,9 +80,12 @@ function showImgOnDocument(imgSrc) {
 
   const imgView = document.getElementById("picture");
   imgView.src = imgSrc;
+
+  return enableExportBtn();
 }
 
 function onClickExportBtn() {
+  disableImportBtn();
   getImgFileFromUser();
 }
 
@@ -78,14 +101,11 @@ function getImgFileFromUser() {
 
     fileReader.onload = () => {
       imgSrc = fileReader.result;
-      console.log("called " + imgSrc + "\n");
       return sendPostImgRequest(imgSrc);
     };
   });
 
   fileInput.click();
-
-  console.log("called" + imgSrc + "\n");
 }
 
 function sendPostImgRequest(imgSrc) {
@@ -102,6 +122,8 @@ function sendPostImgRequest(imgSrc) {
   httpRequest.onreadystatechange = alertContents;
   httpRequest.open("POST", URL, false);
   httpRequest.send(JSON.stringify(sendData));
+
+  return enableImportBtn();
 
   function alertContents() {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
